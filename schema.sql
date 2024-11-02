@@ -1,7 +1,8 @@
 CREATE TABLE user (
     id INTEGER NOT NULL PRIMARY KEY,
     story TEXT NOT NULL,
-    location TEXT NOT NULL
+    location TEXT NOT NULL,
+    active_quest TEXT
 );
 
 CREATE TABLE user_completed_quests (
