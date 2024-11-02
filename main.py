@@ -46,18 +46,15 @@ def response():
     if player_input is None:
         return Response('Missing input parameter', status=400)
 
-    actions = DEFAULT_ACTIONS.copy()
-    actions.update(quest.actions)
-
-    predicted_action = lam.predict_action(player_input, actions)
+    predicted_action = lam.predict_action(player_input, quest.actions)
     if predicted_action == "invalid action":
         return Response('Invalid action', status=400)
 
-    action_obj = actions[predicted_action]
+    action_obj = quest.actions[predicted_action]
     if action_obj.response is None:
         outcome = lam.generate_outcome(
             action_obj,
-            actions,
+            quest.actions,
             quest,
             location
         )

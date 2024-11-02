@@ -4,7 +4,6 @@ import google.generativeai as genai
 from action import Action
 from location import Location
 from quest import Quest
-from stories import STORIES, DEFAULT_ACTIONS
 
 # This shouldn't be hardcoded. Too bad.
 api_key = "AIzaSyBWFVhLGTuaVqhmsTajxaZNqNK58XNYDCI"
