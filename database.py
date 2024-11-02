@@ -23,7 +23,7 @@ class Database:
         self.cursor.execute("SELECT * FROM user WHERE id = ?", (id,))
         row = self.cursor.fetchone()
 
-        story: str = row["story"]
+        story_id: str = row["story"]
         location: str = row["location"]
         active_quest: Optional[str] = row["active_quest"]
 
@@ -32,15 +32,15 @@ class Database:
             (id,)
         )
 
-        completed_quests: list[str] = [row["quest_name"] for row in self.cursor.fetchall()]
 
-        # TODO: Resolve IDs to objects
+        story = STORIES[story_id]
+        completed_quests = [story.quests[row["quest_name"]] for row in self.cursor.fetchall()]
 
         return User(
             token=id,
-            story=STORIES[story],
-            location=location,
-            active_quest=active_quest,
+            story=story,
+            location=story.locations[location],
+            active_quest=story.quests[active_quest] if active_quest is not None else None,
             completed_quests=completed_quests
         )
 

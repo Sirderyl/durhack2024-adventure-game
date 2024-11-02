@@ -2,6 +2,7 @@ from action import Action
 from story import Story
 from location import Location
 from quest import Quest
+from user import User
 
 crown_broken = Quest(
     id="crown_broken",
@@ -14,8 +15,11 @@ crown_broken = Quest(
     """
 )
 
+def speak_blacksmith_result(user: User):
+    pass # TODO: Implement
 speak_blacksmith = Action(
     name="Speak to the blacksmith",
+    result=speak_blacksmith_result
 )
 
 ravenwood = Location(

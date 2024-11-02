@@ -1,15 +1,17 @@
 from typing import Optional
 
 from story import Story
+from location import Location
+from quest import Quest
 
 class User:
     def __init__(
             self,
             token: Optional[int],
             story: Story,
-            location: str, # TODO: Resolve to object
-            active_quest: Optional[str], # TODO: Resolve to object
-            completed_quests: list[str] # TODO: Resolve to object
+            location: Location,
+            active_quest: Optional[Quest],
+            completed_quests: list[Quest]
     ):
         self.token = token
         self.story = story
