@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from flask import Flask, Response
+from flask_cors import CORS
 from stories import STORIES
 from typing import Any
 
@@ -12,6 +13,11 @@ class JsonEncoder(json.JSONEncoder):
 encoder = JsonEncoder()
 
 app = Flask(__name__)
+CORS(app)
+
+@app.route('/stories')
+def stories():
+    return Response(json.dumps(list(STORIES.keys())), mimetype='application/json')
 
 @app.route('/story/<id>')
 def story(id: str):
