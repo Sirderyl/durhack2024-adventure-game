@@ -1,5 +1,6 @@
-from story import Story
 from typing import Optional
+
+from story import Story
 
 class User:
     def __init__(

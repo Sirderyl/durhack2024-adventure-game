@@ -2,8 +2,15 @@ import sqlite3
 import os
 import random
 
-from user import User
 from typing import Optional
+
+from stories.self_worth import story as self_worth_story
+
+from user import User
+
+STORIES = {
+    'self_worth': self_worth_story
+}
 
 class Database:
     def __init__(self, file: str):
@@ -36,7 +43,7 @@ class Database:
 
         return User(
             token=id,
-            story=story,
+            story=STORIES[story],
             location=location,
             active_quest=active_quest,
             completed_quests=completed_quests
