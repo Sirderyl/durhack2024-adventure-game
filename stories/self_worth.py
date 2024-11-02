@@ -4,17 +4,6 @@ from location import Location
 from quest import Quest
 from user import User
 
-crown_broken = Quest(
-    id="crown_broken",
-
-    description="""
-        One day, a message arrives in Ravenwood with news that the kingdom's
-        magical crown—the symbol of unity and strength—has been broken, and the
-        spirit of the kingdom is weakening. The crown is rumoured to be hidden
-        in the Vale of Shadows, a place few return from.
-    """
-)
-
 def speak_blacksmith_result(user: User):
     pass # TODO: Implement
 speak_blacksmith = Action(
@@ -29,6 +18,17 @@ ravenwood = Location(
     actions=[speak_blacksmith]
 )
 
+journey_begins = Quest(
+    id="journey_begins",
+    title="The Journey Begins",
+    description="""
+        One day, a message arrives in Ravenwood with news that the kingdom's
+        magical crown—the symbol of unity and strength—has been broken, and the
+        spirit of the kingdom is weakening. The crown is rumored to be hidden in
+        the Vale of Shadows, a place few return from.
+    """,
+)
+
 story = Story(
     title="The Broken Crown",
     introduction="""
@@ -40,6 +40,7 @@ story = Story(
     """,
 
     starting_location=ravenwood,
+    starting_quest=journey_begins,
 
     character_name="Lira",
     character_description="""
@@ -51,5 +52,5 @@ story = Story(
     """,
 
     locations=[ravenwood],
-    quests=[crown_broken]
+    quests=[journey_begins]
 )

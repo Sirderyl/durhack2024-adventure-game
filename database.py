@@ -2,8 +2,6 @@ import sqlite3
 import os
 import random
 
-from typing import Optional
-
 from stories import STORIES
 
 from user import User
@@ -25,7 +23,7 @@ class Database:
 
         story_id: str = row["story"]
         location: str = row["location"]
-        active_quest: Optional[str] = row["active_quest"]
+        active_quest: str = row["active_quest"]
 
         self.cursor.execute(
             "SELECT * FROM user_completed_quests WHERE user_id = ?",
@@ -40,7 +38,7 @@ class Database:
             token=id,
             story=story,
             location=story.locations[location],
-            active_quest=story.quests[active_quest] if active_quest is not None else None,
+            active_quest=story.quests[active_quest],
             completed_quests=completed_quests
         )
 

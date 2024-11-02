@@ -17,6 +17,7 @@ class Story:
             self,
             title: str,
             introduction: str,
+            starting_quest: Quest,
             starting_location: Location,
             character_name: str,
             character_description: str,

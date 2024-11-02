@@ -10,7 +10,7 @@ class User:
             token: Optional[int],
             story: Story,
             location: Location,
-            active_quest: Optional[Quest],
+            active_quest: Quest,
             completed_quests: list[Quest]
     ):
         self.token = token
