@@ -1,43 +1,21 @@
 #!/usr/bin/env python3
 
-from reactpy import component, html, run, hooks
-
+from flask import Flask
 from stories import STORIES
-from story import Story
+from typing import Any
 
-@component
-def StorySummary(story: Story):
-    return html.div(
-        html.h2(story.title),
-        html.p(story.introduction),
-        html.p(story.character_description),
-    )
+import json
 
-@component
-def Game(story: Story):
-    return html.div(
-        StorySummary(story),
-    )
+class JsonEncoder(json.JSONEncoder):
+    def default(self, o: Any):
+        return o.__dict__
+encoder = JsonEncoder()
 
-@component
-def App():
-    story, setStory = hooks.use_state(None)
-    def mk_story_handler(story: Story):
-        def exec(_):
-            setStory(story) # type: ignore
-        return exec
+app = Flask(__name__)
 
-    return html.div(
-        html.h1("Hello, world!"),
-        html.p("This is a story game."),
-        html.ul(
-            *(html.li(
-                html.button(
-                    {"onClick": mk_story_handler(STORIES['self_worth'])},
-                    story.title
-                )
-            ) for story in STORIES.values())
-        ) if story is None else Game(story)
-    )
+@app.route('/story/<id>')
+def story(id: str):
+    story = STORIES[id]
+    return encoder.encode(story)
 
-run(App)
+app.run(port=5000)
