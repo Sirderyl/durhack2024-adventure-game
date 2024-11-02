@@ -6,9 +6,7 @@ class Location:
         id: str,
         name: str,
         description: str,
-        actions: list[Action],
     ):
         self.id = id
         self.name = name
         self.description = description
-        self.actions = actions
