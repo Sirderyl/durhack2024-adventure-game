@@ -23,21 +23,18 @@ def create_prompt(player_input, valid_actions: dict[str, Action]):
         "The player's input is:\n"
         f"{player_input}\n\n"
     )
-    print(prompt)
     return prompt
 
-def create_response_prompt(action, available_actions: dict[str, Action], location: Location, quest: Quest):
+def create_response_prompt(action: Action, available_actions: dict[str, Action], location: Location, quest: Quest):
     action_names = [action.name for action in available_actions.values()]
     prompt = (
         "This is a text-based adventure game. The player's current quest is:\n\n"
         f"{quest.description}\n\n"
         "The player's current location is:\n\n"
         f"{location.description}\n\n"
-        "The player chose this action:\n\n"
-        f"{action}\n\n"
-        "Provide a very short description of the action's outcome, working in the followup actions.\n\n"
+        f"Describe the player performing the action '{action.name}' in the context of the quest and location.\n\n"
+        "Provide a 1-2 sentence description, followed by a sentence describing what could happen next.\n\n"
         f"{'\t'.join(action_names)}\n\n"
-        "Respond with plain text. Do not use markdown. Use neutral language when referring to actions.\n\n"
 
     )
 
@@ -52,7 +49,7 @@ def get_llm_response(player_input, valid_actions: dict[str, Action]):
     return response.text.strip()
 
 
-def llm_action(action, available_actions: dict[str, Action], quest, location):
+def llm_action(action: Action, available_actions: dict[str, Action], quest, location):
     prompt = create_response_prompt(action, available_actions, quest, location)
 
     genai.configure(api_key=api_key)
