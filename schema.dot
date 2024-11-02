@@ -1,0 +1,32 @@
+digraph {
+    User
+
+    User->Story
+    User->Location
+    User->"Completed Quests"
+}
+
+// digraph {
+//     Story
+
+//     Quest
+
+//     Action
+
+//     Location
+//     Location->Quest [label="1.."]
+
+//     Location->Action [label="1.."]
+
+//     Action->Quest [label="Requires Quest\n0..1"]
+//     Action->Location [label="Done in\n0..1"]
+//     Action->Location [label="Leads To Location\n0..1"]
+
+//     User
+//     User->Story [label="1"]
+//     User->Location [label="1"]
+//     User->Quest [label="completed\n0..*"]
+
+//     Story->Location [label="Start Location\n1"]
+//     Story->Location [label="1.."]
+// }
