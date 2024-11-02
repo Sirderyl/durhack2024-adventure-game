@@ -11,7 +11,7 @@ def look(user: User):
     print(user.location.description)
 
 DEFAULT_ACTIONS = {
-    'Look Around': Action(
-        name='Look Around'
+    'Look Around the area': Action(
+        name='Look Around the area'
     )
 }

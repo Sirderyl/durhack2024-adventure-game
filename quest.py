@@ -12,4 +12,7 @@ class Quest:
         self.id = id
         self.title = title
         self.description = cleandoc(description)
-        self.actions = actions
+        self.actions = {
+            action.name: action
+            for action in actions
+        }
