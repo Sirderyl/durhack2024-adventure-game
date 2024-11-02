@@ -12,7 +12,6 @@ def look(user: User):
 
 DEFAULT_ACTIONS = {
     'Look Around': Action(
-        name='Look Around',
-        result=look
+        name='Look Around'
     )
 }

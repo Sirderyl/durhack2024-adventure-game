@@ -6,16 +6,18 @@ from user import User
 
 def speak_blacksmith_result(user: User):
     pass # TODO: Implement
+
 speak_blacksmith = Action(
-    name="Speak to the blacksmith",
-    result=speak_blacksmith_result
+    name="Talk to blacksmith"
 )
 
 ravenwood = Location(
     id="ravenwood",
-    name="Ravenwood",
-    description="A small medieval village",
-    actions=[speak_blacksmith]
+    name="Ravenwood Forge",
+    description="""
+        You are in a forge inside a small medieval village surrounded by a 
+        dense forest, called Ravenwood. Ravenwood is known for its skilled blacksmiths and woodworkers.
+    """
 )
 
 journey_begins = Quest(
@@ -25,8 +27,11 @@ journey_begins = Quest(
         One day, a message arrives in Ravenwood with news that the kingdom's
         magical crown—the symbol of unity and strength—has been broken, and the
         spirit of the kingdom is weakening. The crown is rumored to be hidden in
-        the Vale of Shadows, a place few return from.
+        the Vale of Shadows, a place few return from. Lira is reluctant, 
+        doubting she has what it takes to find the crown and repair it. 
+        Lira’s mentor sees potential in her. He wants to speak with her.
     """,
+    actions=[speak_blacksmith]
 )
 
 story = Story(
