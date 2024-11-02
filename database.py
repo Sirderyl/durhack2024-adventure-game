@@ -4,13 +4,9 @@ import random
 
 from typing import Optional
 
-from stories.self_worth import story as self_worth_story
+from stories import STORIES
 
 from user import User
-
-STORIES = {
-    'self_worth': self_worth_story
-}
 
 class Database:
     def __init__(self, file: str):
@@ -38,7 +34,6 @@ class Database:
 
         completed_quests: list[str] = [row["quest_name"] for row in self.cursor.fetchall()]
 
-        # TODO: Fetch the story
         # TODO: Resolve IDs to objects
 
         return User(

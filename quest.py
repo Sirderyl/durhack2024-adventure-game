@@ -1,3 +1,5 @@
+from inspect import cleandoc
+
 class Quest:
     def __init__(
         self,
@@ -5,4 +7,4 @@ class Quest:
         description: str,
     ):
         self.id = id
-        self.description = description
+        self.description = cleandoc(description)
