@@ -1,62 +1,27 @@
 #!/usr/bin/env python3
 
-from reactpy import component, html, run, hooks
-
+from flask import Flask, Response
+from flask_cors import CORS
 from stories import STORIES
-from story import Story
+from typing import Any
 
-@component
-def App():
-    story, setStory = hooks.use_state(None)
-    def mk_story_handler(story: Story):
-        def exec(_):
-            setStory(story) # type: ignore
-        return exec
+import json
 
-    return html.div(
-        html.h1("Hello, world!"),
-        html.p("This is a story game."),
-        html.ul(
-            *(html.li(
-                html.button(
-                    {"onClick": mk_story_handler(STORIES['self_worth'])},
-                    story.title
-                )
-            ) for story in STORIES.values())
-        ) if story is None else html.h2(story.title)
-    )
+class JsonEncoder(json.JSONEncoder):
+    def default(self, o: Any):
+        return o.__dict__
+encoder = JsonEncoder()
 
-run(App)
-# from story import Story
+app = Flask(__name__)
+CORS(app)
 
-# def choose_story():
-#     print("Choose a story:")
-#     by_index: list[Story] = []
-#     for index, id in enumerate(STORIES):
-#         story = STORIES[id]
-#         by_index.append(story)
-#         print(f"{index + 1}. {story.title}")
+@app.route('/stories')
+def stories():
+    return Response(json.dumps(list(STORIES.keys())), mimetype='application/json')
 
-#     while True:
-#         try:
-#             choice = int(input("Enter the number of the story you want to play: "))
-#             if choice < 1:
-#                 raise ValueError()
-#             story = by_index[choice - 1]
-#             break
-#         except (ValueError, IndexError):
-#             print("Invalid choice. Please try again.")
+@app.route('/story/<id>')
+def story(id: str):
+    story = STORIES[id]
+    return Response(encoder.encode(story), mimetype='application/json')
 
-#     return story
-
-
-
-# def main():
-#     # story = choose_story()
-#     # TODO: Placeholder
-#     story = STORIES['self_worth']
-
-#     story.print_intro()
-
-# if __name__ == '__main__':
-#     main()
+app.run(port=5000)
