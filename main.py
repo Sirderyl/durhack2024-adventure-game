@@ -6,6 +6,20 @@ from stories import STORIES
 from story import Story
 
 @component
+def StorySummary(story: Story):
+    return html.div(
+        html.h2(story.title),
+        html.p(story.introduction),
+        html.p(story.character_description),
+    )
+
+@component
+def Game(story: Story):
+    return html.div(
+        StorySummary(story),
+    )
+
+@component
 def App():
     story, setStory = hooks.use_state(None)
     def mk_story_handler(story: Story):
@@ -23,40 +37,7 @@ def App():
                     story.title
                 )
             ) for story in STORIES.values())
-        ) if story is None else html.h2(story.title)
+        ) if story is None else Game(story)
     )
 
 run(App)
-# from story import Story
-
-# def choose_story():
-#     print("Choose a story:")
-#     by_index: list[Story] = []
-#     for index, id in enumerate(STORIES):
-#         story = STORIES[id]
-#         by_index.append(story)
-#         print(f"{index + 1}. {story.title}")
-
-#     while True:
-#         try:
-#             choice = int(input("Enter the number of the story you want to play: "))
-#             if choice < 1:
-#                 raise ValueError()
-#             story = by_index[choice - 1]
-#             break
-#         except (ValueError, IndexError):
-#             print("Invalid choice. Please try again.")
-
-#     return story
-
-
-
-# def main():
-#     # story = choose_story()
-#     # TODO: Placeholder
-#     story = STORIES['self_worth']
-
-#     story.print_intro()
-
-# if __name__ == '__main__':
-#     main()
