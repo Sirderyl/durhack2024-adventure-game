@@ -10,7 +10,7 @@ from stories import STORIES, DEFAULT_ACTIONS
 api_key = "AIzaSyBWFVhLGTuaVqhmsTajxaZNqNK58XNYDCI"
 
 # Example function to create a structured prompt
-def create_prompt(player_input, valid_actions: dict[str, Action]):
+def create_prompt(player_input: str, valid_actions: dict[str, Action]):
     action_names = [action.name for action in valid_actions.values()]
 
     prompt = (
@@ -40,7 +40,7 @@ def create_response_prompt(action: Action, available_actions: dict[str, Action],
 
     return prompt
 
-def get_llm_response(player_input, valid_actions: dict[str, Action]):
+def predict_action(player_input: str, valid_actions: dict[str, Action]):
     prompt = create_prompt(player_input, valid_actions)
 
     genai.configure(api_key=api_key)
@@ -49,34 +49,10 @@ def get_llm_response(player_input, valid_actions: dict[str, Action]):
     return response.text.strip()
 
 
-def llm_action(action: Action, available_actions: dict[str, Action], quest, location):
-    prompt = create_response_prompt(action, available_actions, quest, location)
+def generate_outcome(action: Action, available_actions: dict[str, Action], quest: Quest, location: Location):
+    prompt = create_response_prompt(action, available_actions, location, quest)
 
     genai.configure(api_key=api_key)
     model = genai.GenerativeModel("gemini-1.5-flash")
     response = model.generate_content(prompt)
     return response.text.strip()
-
-
-def perform_action(player_input: str, quest: Quest, location: Location, available_actions: dict[str, Action]):
-    action = get_llm_response(player_input, available_actions)
-    response = ""
-    if action == "invalid action":
-        response = "Invalid action. Please try again."
-    else:
-        print(f"Performing action: {action}")
-        action = available_actions[action]
-        if action.response is None:
-            response = llm_action(action, available_actions, quest, location)
-        else:
-            response = action.response
-
-    print(response)
-
-story = STORIES['self_worth']
-quest = story.quests['journey_begins']
-
-actions = DEFAULT_ACTIONS.copy()
-actions.update(quest.actions)
-
-perform_action("I want to observe my surroundings", quest, story.starting_location, actions)
