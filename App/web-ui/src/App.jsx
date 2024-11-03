@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Home from './pages/Home'
 import Quest1 from './pages/Quest1'
 import Quest2 from './pages/Quest2'
+import Quest3 from './pages/Quest3'
 import './App.css'
 
 function App() {
@@ -42,6 +43,10 @@ function App() {
         <Route path='/the-broken-crown/quest2'
           element={<Quest2 location={locations.vale_of_shadows?.description} 
           quest={quests.meeting_the_fox?.description} />}
+        />
+        <Route path='/the-broken-crown/quest3'
+          element={<Quest3 location={locations.vale_of_shadows?.description} 
+          quest={quests.facing_the_mirror?.description} />}
         />
       </Routes>
     </div>

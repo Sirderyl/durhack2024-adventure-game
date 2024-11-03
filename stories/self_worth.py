@@ -99,6 +99,31 @@ throw_meat = Action(
     """
 )
 
+agree_with_mirror = Action(
+    name="Agree with the mirror"
+)
+
+ignore_mirror = Action(
+    name="Ignore the mirror",
+    response="""
+        But as she stares into the false future, something deep within her stirs, a small flicker of defiance. 
+        She thinks of Brannor’s words, of the journeyman’s hammer he gave her, a symbol of the strength she’s 
+        forged through countless days of hard work and resilience.
+
+        With a trembling hand, she reaches into her pouch and pulls out the hammer. Its solid weight grounds her, 
+        bringing clarity back into her mind. Gritting her teeth, she meets the gaze of her hollow-eyed reflection 
+        and whispers fiercely, "This isn’t me. And this isn’t my future."
+
+        As her resolve strengthens, the glass shivers, cracks splintering across its surface. Her reflection 
+        distorts, the despairing image warping and fading as light breaks through the cracks. With a final, 
+        resounding snap, the mirror shatters, shards scattering across the path, disappearing into the mist.
+
+        Lira stands taller, the weight lifting from her shoulders. She’s still uncertain of the road ahead, 
+        but a fire has rekindled within her, stronger than the shadows and false visions meant to hold her back. 
+        And so, she moves forward, more determined than ever.
+    """
+)
+
 ravenwood = Location(
     id="ravenwood",
     name="Ravenwood Forge",
@@ -156,6 +181,40 @@ meeting_the_fox = Quest(
     important_action=throw_meat
 )
 
+facing_the_mirror = Quest(
+    id="facing_the_mirror",
+    title="Facing the Mirror",
+    description="""
+        
+        Lira continues down the mist-laden path, her breath steadying after her encounter with the fox. But as she 
+        rounds a bend, she freezes. There, half-hidden in the shadows, stands an ornate mirror framed in twisted 
+        silver vines. The glass shimmers with an eerie, dark light, drawing her closer despite a sense of dread 
+        crawling up her spine.
+
+        She hesitates, but something compels her to step forward, her gaze locking onto the glass. In it, 
+        she sees herself—but this reflection is different, wrong somehow. The mirror shows her standing alone, 
+        her hands empty and trembling. The crown is nowhere to be seen.
+
+        And then, the scene shifts. She sees faces—familiar faces from her village—watching her with cold, 
+        distant eyes. Her mentor Brannor turns away, a flicker of disappointment crossing his face, as if he, too, 
+        has given up on her. Other villagers shake their heads, their whispers reaching her like ghostly echoes:
+
+        "She was never meant for this."
+
+        "How foolish to think she was strong enough."
+
+        Her reflection slumps, eyes hollow, her spirit crushed. The weight of failure seeps into her bones, 
+        and a whisper from the glass chills her to the core: This is your fate. This is all you’ll ever be—a 
+        disappointment, a shadow forgotten by all.
+
+        A wave of despair crashes over her, her knees weakening as her heart sinks. The idea of turning back, 
+        of abandoning the quest, begins to seem almost... reasonable. The path forward feels impossibly heavy, 
+        and her spirit trembles on the edge of breaking.
+    """,
+    actions=[ignore_mirror, agree_with_mirror],
+    important_action=ignore_mirror
+)
+
 story = Story(
     title="The Broken Crown",
     introduction="""
@@ -179,5 +238,5 @@ story = Story(
     """,
 
     locations=[ravenwood, vale_of_shadows],
-    quests=[journey_begins, meeting_the_fox]
+    quests=[journey_begins, meeting_the_fox, facing_the_mirror]
 )
