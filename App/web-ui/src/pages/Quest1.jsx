@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import Forge from '../assets/Forge.jpg'
+import { LOCALHOST } from '../settings.json'
 
 function Quest1({ location, quest, actions }) {
  
@@ -22,7 +23,7 @@ function Quest1({ location, quest, actions }) {
             return
         }
 
-        fetch(`http://localhost:5000/response?story=self_worth&quest=journey_begins&location=ravenwood&input="` + userInput + `"`)
+        fetch(LOCALHOST + `/response?story=self_worth&quest=journey_begins&location=ravenwood&input="` + userInput + `"`)
         .then(response => response.json())
         .then(data => {
             setActionTaken(data.action)

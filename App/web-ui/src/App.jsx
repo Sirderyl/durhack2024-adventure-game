@@ -8,6 +8,7 @@ import Quest4 from './pages/Quest4'
 import Quest5_final from './pages/Quest5_final'
 import Ending from './pages/Ending'
 import './App.css'
+import { LOCALHOST } from './settings.json'
 
 function App() {
   const [story, setStory] = useState('self_worth')
@@ -20,7 +21,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/story/${story}`)
+    fetch(LOCALHOST + `/story/${story}`)
     .then(response => response.json())
     .then(data => {
       setTitle(data.title)

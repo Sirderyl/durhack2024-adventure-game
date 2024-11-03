@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /durhack_2024/dist
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) index.html [QSA,L]
+</IfModule>
+
+AddType application/javascript .js
+AddType text/css .css
+AddDefaultCharset utf-8
+AddCharset utf-8 .htm .html .js .css

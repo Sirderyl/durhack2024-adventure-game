@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import Vale from '../assets/Vale.jpg'
+import { LOCALHOST } from '../settings.json'
 
 function Quest2({ location, quest }) {
  
@@ -13,7 +14,7 @@ function Quest2({ location, quest }) {
     async function handleSubmit(e) {
         e.preventDefault()
 
-        fetch(`http://localhost:5000/response?story=self_worth&quest=meeting_the_fox&location=vale_of_shadows&input="` + userInput + `"`)
+        fetch(LOCALHOST + `/response?story=self_worth&quest=meeting_the_fox&location=vale_of_shadows&input="` + userInput + `"`)
         .then(response => response.json())
         .then(data => {
             setActionTaken(data.action)

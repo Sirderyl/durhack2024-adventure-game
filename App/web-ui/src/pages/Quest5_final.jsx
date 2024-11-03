@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import Crown from '../assets/Crown.jpg'
+import { LOCALHOST } from '../settings.json'
 
 function Quest5_final({ location, quest }) {
  
@@ -13,7 +14,7 @@ function Quest5_final({ location, quest }) {
     async function handleSubmit(e) {
         e.preventDefault()
 
-        fetch(`http://localhost:5000/response?story=self_worth&quest=finding_the_crown&location=vale_of_shadows&input="` + userInput + `"`)
+        fetch(LOCALHOST + `/response?story=self_worth&quest=finding_the_crown&location=vale_of_shadows&input="` + userInput + `"`)
         .then(response => response.json())
         .then(data => {
             setActionTaken(data.action)
