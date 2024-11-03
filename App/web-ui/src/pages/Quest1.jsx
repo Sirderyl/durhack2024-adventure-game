@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import Forge from '../assets/Forge.jpg'
 
-function Quest1({ location, quest }) {
+function Quest1({ location, quest, actions }) {
  
     const [userInput, setUserInput] = useState("")
     const [actionTaken, setActionTaken] = useState("")
@@ -12,6 +12,15 @@ function Quest1({ location, quest }) {
 
     async function handleSubmit(e) {
         e.preventDefault()
+
+        if(userInput === "list actions") {
+            let actionList = ""
+            Object.keys(actions).forEach(action => {
+                actionList += action + "\n"
+            })
+            setOutcome(actionList)
+            return
+        }
 
         fetch(`http://localhost:5000/response?story=self_worth&quest=journey_begins&location=ravenwood&input="` + userInput + `"`)
         .then(response => response.json())

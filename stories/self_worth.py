@@ -122,6 +122,75 @@ ignore_mirror = Action(
     """
 )
 
+discourage_bard = Action(
+    name="Agree with bard's negativity"
+)
+
+bard_negativity = Action(
+    name="Bard's negativity brings Lira down"
+)
+
+encourage_bard = Action(
+    name="Give the bard words of encouragement",
+    response="""
+        Lira studies him, her heart aching at his words. She knows too well the weight of self-doubt, 
+        the sting of feeling unseen. “You know, I was told something recently,” she says, her voice gentle. 
+        “That strength isn’t in knowing you’ll succeed but in trying despite the doubt. Maybe… maybe the worth 
+        of your music isn’t in whether others listen, but in how it makes you feel.”
+
+        The bard looks at her, surprise flickering in his eyes.
+
+        “Play because you love it,” Lira urges. “Play because it’s a part of you. Music has its own kind of magic, 
+        one that doesn’t need an audience to be real.”
+
+        The bard hesitates, then slowly lifts the lute again. He plucks a few strings, and the familiar melody 
+        spills into the air, tentative at first but growing stronger with each note. His eyes close as he lets 
+        himself sink into the music, his fingers dancing along the strings, playing with a quiet, heartfelt passion 
+        that seems to fill the grove.
+
+        Lira sits beside him, letting the music wash over her, feeling its warmth and joy. For the first 
+        time in a long while, the bard smiles, his face lighting up as he plays not for an audience, but for himself.
+
+        When he finishes, he looks at her, his cheeks flushed. “Thank you, Lira. I… I’d forgotten what that felt like.”
+
+        She smiles, giving him an encouraging nod. “Remember that feeling. Let it guide you.”
+
+        As she rises to leave, the bard presses a small charm into her hand—a token of gratitude. 
+        “Take this, for luck,” he says shyly. “A little melody to carry with you on your quest.”
+
+        With a final smile, she bids him farewell, her spirit buoyed by the magic of his music and the 
+        reminder that true worth comes from within.
+    """
+)
+
+do_not_fix_crown = Action(
+    name="Think about not fixing the crown"
+)
+
+fix_crown = Action(
+    name="Decide to fix the crown",
+    response="""
+        “If it means saving the kingdom,” she says quietly, “then I accept. Let them remember the crown, 
+        the peace it brings… that’s enough.”
+
+        A faint smile touches the mage’s lips, a hint of admiration in his eyes. “Very well, child.”
+
+        He extends his hand, and a silver light flows from his fingertips, enveloping the crown. Lira watches 
+        in awe as the shattered jewels mend, their color blazing to life, and the dull metal gleams once more. 
+        When the light fades, the crown is whole—a symbol of unity and strength, gleaming with restored glory.
+
+        Lira’s heart swells, pride and sorrow mingling as she looks upon her work, knowing it will never be 
+        hers to claim. She rises, the weight of her decision settling in, but with it, a sense of peace she hadn’t 
+        expected.
+
+        The mage nods approvingly. “Your sacrifice will not be in vain, Lira of Ravenwood. You have proven that 
+        true worth lies not in fame, but in the heart’s quiet strength.”
+
+        With that, he vanishes, leaving Lira alone in the glade. She carefully lifts the crown, feeling its warmth, 
+        and turns to carry it back to the kingdom, her spirit renewed, her heart steady.
+    """
+)
+
 ravenwood = Location(
     id="ravenwood",
     name="Ravenwood Forge",
@@ -213,6 +282,79 @@ facing_the_mirror = Quest(
     important_action=ignore_mirror
 )
 
+the_sad_bard = Quest(
+    id="the_sad_bard",
+    title="The Sad Bard",
+    description="""
+        As Lira steps past the shattered remnants of the mirror, the mist around her begins to clear slightly, 
+        and the faint sound of soft, mournful music drifts through the air. She follows the melody, 
+        her heart drawn to its melancholy beauty, until she finds herself in a small grove where a young man 
+        sits on a moss-covered rock, his head bowed over a lute.
+
+        The bard’s fingers hover uncertainly over the strings, his eyes cast downward. His clothes are worn, 
+        and his expression is one of quiet defeat. He doesn’t notice Lira at first, lost in his own world as he 
+        strums a gentle tune, each note quivering with sadness.
+
+        Lira approaches him slowly, careful not to startle him. “That’s a beautiful song,” she says softly.
+
+        The bard jumps, nearly dropping his lute. He looks up, his face coloring with embarrassment. 
+        “Oh! I didn’t… I didn’t think anyone was listening,” he mutters, eyes flicking away. 
+        “I’m just… practicing. It’s nothing special.”
+
+        Lira sits beside him, glancing at the lute. “It sounded special to me. Why do you play, if I may ask?”
+
+        The bard shrugs, his gaze drifting back to his instrument. “I used to play for others in my village, 
+        but… they stopped listening. No one really cared for my music.” He sighs, his fingers tracing the 
+        strings absently. “Sometimes I wonder if there’s any point in playing at all.”
+    """,
+    actions=[discourage_bard, bard_negativity, encourage_bard],
+    important_action=encourage_bard
+)
+
+finding_the_crown = Quest(
+    id="finding_the_crown",
+    title="Finding the Crown",
+    description="""
+        As Lira steps into a hidden glade, her breath catches. There, nestled among the roots of an ancient tree, 
+        lies the broken crown. Its once-glorious metal is tarnished, the jewels cracked and dull, a symbol of 
+        power now fallen into ruin. She kneels beside it, reaching out with trembling hands, and grasps her hammer, 
+        feeling the weight of her journey pressing down on her.
+
+        With a steadying breath, she raises the hammer, striking the crown gently, trying to reshape it, 
+        to breathe life back into its metal and jewels. But as she hammers, nothing happens—the crown remains 
+        stubbornly fractured, resisting her efforts.
+
+        A wave of frustration and exhaustion wells up within her. After all this… have I come this far only to 
+        fail? Her shoulders slump, doubt creeping back into her heart.
+
+        Just as her spirit begins to falter, a soft glow fills the glade. She looks up to see a figure standing 
+        at the edge of the clearing, shrouded in a cloak of shimmering blue. It’s an old mage, his eyes sharp and 
+        filled with ancient wisdom. He steps forward, his gaze fixed on the broken crown.
+
+        “Child,” he says in a voice that seems to echo through time, “you’ve come farther than most. But the magic 
+        you need to restore the crown is beyond mere tools or brute strength. It requires a sacrifice.”
+
+        Lira’s heart races, hope mingling with apprehension. “You mean… you can help me fix it?”
+
+        The mage nods, a slight smile playing at his lips. “I can, but only if you’re willing to pay the price.” 
+        His gaze is piercing, and she feels as if he’s looking into the very core of her soul. “If I lend you my 
+        magic, none shall know of your courage. No songs will be sung in your honor, no tales will be told. The 
+        kingdom will be saved, but your name will be lost to history, your deeds hidden in shadow.”
+
+        Lira’s heart pounds, the weight of the choice pressing down on her. She had dreamt of proving herself, of 
+        being seen as someone worthy, someone brave. And now, when she’s finally on the brink of restoring the crown, 
+        she’s asked to relinquish all recognition.
+
+        The mage’s gaze remains steady, unyielding. “Consider this carefully, Lira. Some heroes wear their glory; 
+        others carry it silently, their deeds known only to themselves.”
+
+        For a long moment, Lira is silent, wrestling with her pride, her doubts, and her heart’s truest desires. 
+        Finally, she lifts her head, her eyes resolute.
+    """,
+    actions=[do_not_fix_crown, fix_crown],
+    important_action=fix_crown
+)
+
 story = Story(
     title="The Broken Crown",
     introduction="""
@@ -236,5 +378,5 @@ story = Story(
     """,
 
     locations=[ravenwood, vale_of_shadows],
-    quests=[journey_begins, meeting_the_fox, facing_the_mirror]
+    quests=[journey_begins, meeting_the_fox, facing_the_mirror, the_sad_bard, finding_the_crown]
 )

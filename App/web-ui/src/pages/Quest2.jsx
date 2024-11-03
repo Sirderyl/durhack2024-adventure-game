@@ -34,7 +34,7 @@ function Quest2({ location, quest }) {
 
   return (
     <>
-        <img src={Vale} alt='Forge' height={400} width={400}/>
+        <img src={Vale} alt='Vale' height={400} width={400}/>
         <h3 style={{ whiteSpace: 'pre-line' }}>{location}</h3>
         <h4 style={{ whiteSpace: 'pre-line' }}>{quest}</h4>
         {outcome === "Invalid action" ? (
