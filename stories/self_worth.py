@@ -164,7 +164,7 @@ encourage_bard = Action(
 )
 
 do_not_fix_crown = Action(
-    name="Think about not fixing the crown and quitting"
+    name="Attempt to quit and not fix the crown"
 )
 
 fix_crown = Action(
