@@ -32,7 +32,8 @@ journey_begins = Quest(
         doubting she has what it takes to find the crown and repair it.
         Lira’s mentor sees potential in her. He wants to speak with her.
     """,
-    actions=[speak_blacksmith]
+    actions=[speak_blacksmith],
+    important_action=speak_blacksmith
 )
 
 story = Story(

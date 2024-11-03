@@ -33,6 +33,7 @@ def create_response_prompt(action: Action, available_actions: dict[str, Action],
         f"{location.description}\n\n"
         f"Describe the player performing the action '{action.name}' in the context of the quest and location.\n\n"
         "Provide a 1-2 sentence description, followed by a sentence describing what could happen next.\n\n"
+        f"Make sure to include next needed action of {quest.important_action.name}, but don't draw too much attention to it.\n\n"
         f"{'\t'.join(action_names)}\n\n"
 
     )
@@ -55,3 +56,14 @@ def generate_outcome(action: Action, available_actions: dict[str, Action], quest
     model = genai.GenerativeModel("gemini-1.5-flash")
     response = model.generate_content(prompt)
     return response.text.strip()
+
+if __name__ == "__main__":
+    from stories import STORIES
+    s = STORIES["self_worth"]
+
+    print(generate_outcome(
+        s.quests["journey_begins"].actions['Look Around the area'],
+        s.quests["journey_begins"].actions,
+        s.quests["journey_begins"],
+        s.starting_location
+    ))

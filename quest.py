@@ -8,6 +8,7 @@ class Quest:
         title: str,
         description: str,
         actions: list[Action],
+        important_action: Action,
     ):
         self.id = id
         self.title = title
@@ -16,3 +17,4 @@ class Quest:
             action.name: action
             for action in actions
         }
+        self.important_action = important_action
