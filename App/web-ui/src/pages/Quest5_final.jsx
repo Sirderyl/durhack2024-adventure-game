@@ -39,7 +39,7 @@ function Quest5_final({ location, quest }) {
         <h4 style={{ whiteSpace: 'pre-line' }}>{quest}</h4>
         {outcome === "Invalid action" ? (
             <p style={{ whiteSpace: 'pre-line', color: 'red' }}>
-                {outcome}. Try something else, will you encourage the bard, agree with his opinion, or let him drag you down?
+                {outcome}. Try something else, you have a difficult choice to make. To fix or not to fix?
             </p>
         ) : (
             <p style={{ whiteSpace: 'pre-line', color: 'lightgreen' }}>{outcome}</p>
