@@ -18,7 +18,7 @@ def create_prompt(player_input: str, valid_actions: dict[str, Action]):
         "Return the name of your choice as it appeared in the input and nothing else.\n\n"
         "If there are no good matches, return 'invalid action'.\n\n"
         "Your valid actions are:\n"
-        f"{''.join(action_names)}\n\n"
+        f"{'\t'.join(action_names)}\n\n"
         "The player's input is:\n"
         f"{player_input}\n\n"
     )
@@ -34,7 +34,7 @@ def create_response_prompt(action: Action, available_actions: dict[str, Action],
         f"Describe the player performing the action '{action.name}' in the context of the quest and location.\n\n"
         "Provide a 1-2 sentence description, followed by a sentence describing what could happen next.\n\n"
         f"Make sure to include next needed action of {quest.important_action.name}, but don't draw too much attention to it.\n\n"
-        f"{''.join(action_names)}\n\n"
+        f"{'\t'.join(action_names)}\n\n"
     )
 
     return prompt

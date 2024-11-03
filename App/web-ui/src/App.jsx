@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Home from './pages/Home'
 import Quest1 from './pages/Quest1'
+import Quest2 from './pages/Quest2'
 import './App.css'
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
   const [title, setTitle] = useState("")
   const [introduction, setIntroduction] = useState("")
   const [character_description,setCharacter_description] = useState("")
-  const [location, setLocation] = useState("")
+  const [locations, setLocations] = useState("")
   const [quests, setQuests] = useState({})
 
 
@@ -21,7 +22,7 @@ function App() {
       setTitle(data.title)
       setIntroduction(data.introduction)
       setCharacter_description(data.character_description)
-      setLocation(data.locations.ravenwood.description)
+      setLocations(data.locations)
       setQuests(data.quests)
     })
     .catch(err => console.log(err))
@@ -34,7 +35,14 @@ function App() {
       <Routes>
         <Route path='/the-broken-crown' element={<Home introduction={introduction}
         character_description={character_description} />} />
-        <Route path='/the-broken-crown/quest1' element={<Quest1 location={location} quest={quests.journey_begins?.description} />} />
+        <Route path='/the-broken-crown/quest1'
+          element={<Quest1 location={locations.ravenwood?.description}
+          quest={quests.journey_begins?.description} />}
+        />
+        <Route path='/the-broken-crown/quest2'
+          element={<Quest2 location={locations.vale_of_shadows?.description} 
+          quest={quests.meeting_the_fox?.description} />}
+        />
       </Routes>
     </div>
   )

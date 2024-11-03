@@ -63,6 +63,42 @@ throw_rock = Action(
     name="Throw a rock"
 )
 
+throw_meat = Action(
+    name="Throw a piece of raw meat",
+    response="""
+        As Lira edges closer to the fox blocking her path, she feels her nerves buzzing with urgency. The fox’s 
+        golden eyes glint with a cunning that seems to pierce right through her, a sly grin curling at the 
+        edges of his muzzle.
+
+        “Well?” he sneers. “Still think you can make it past me? You’re hardly worth a second glance.”
+
+        Lira clenches her jaw, fighting the urge to argue, and instead lets her hand drift to her pouch, her 
+        fingers brushing against a scrap of raw meat she packed earlier for her journey.
+
+        Her mind races. Maybe… just maybe this will work.
+
+        She keeps her movements slow and deliberate, careful not to draw the fox’s attention. Then, with a 
+        swift, practiced motion, she pulls out the meat and flings it far off into the shadows, the faint scent 
+        of it filling the damp air.
+
+        The fox’s nose twitches, his mocking expression flickering with sudden interest. His gaze snaps toward 
+        the meat, his body tensing as instinct takes hold.
+
+        Without a second thought, he bolts toward the meat, his tail flashing like a streak of fire through 
+        the mist as he darts into the underbrush.
+
+        Lira doesn’t wait to see what he does next. She steps lightly around where he’d been lounging, feeling 
+        her pulse quicken as she hurries down the newly opened path. Behind her, the fox is muttering, somewhere 
+        off in the shadows.
+
+        “Crafty little wanderer,” he calls out begrudgingly, his voice growing faint. “Perhaps there’s more to you 
+        than I thought.”
+
+        A hint of satisfaction blooms in Lira’s chest as she presses onward, the mist closing around her once more. 
+        She knows the fox won’t be far behind, but for now, she’s free to continue her journey.
+    """
+)
+
 ravenwood = Location(
     id="ravenwood",
     name="Ravenwood Forge",
@@ -116,8 +152,8 @@ meeting_the_fox = Quest(
         Lira is hit with a wave of self-doubt. She can feel the fox’s words burrowing into her heart,
         but she knows she must press on. She must find a way to outwit the fox and continue her quest.
     """,
-    actions=[],
-    important_action=None
+    actions=[throw_rock, throw_meat],
+    important_action=throw_meat
 )
 
 story = Story(
@@ -142,6 +178,6 @@ story = Story(
         apprentice forever, never to make a difference.
     """,
 
-    locations=[ravenwood],
-    quests=[journey_begins]
+    locations=[ravenwood, vale_of_shadows],
+    quests=[journey_begins, meeting_the_fox]
 )

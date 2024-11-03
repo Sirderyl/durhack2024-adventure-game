@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import Forge from '../assets/Forge.jpg'
 
-function Home({ location, quest }) {
+function Quest1({ location, quest }) {
  
     const [userInput, setUserInput] = useState("")
     const [actionTaken, setActionTaken] = useState("")
@@ -35,8 +35,8 @@ function Home({ location, quest }) {
   return (
     <>
         <img src={Forge} alt='Forge' height={400} width={400}/>
-        <h3>{location}</h3>
-        <h4>{quest}</h4>
+        <h3 style={{ whiteSpace: 'pre-line' }}>{location}</h3>
+        <h4 style={{ whiteSpace: 'pre-line' }}>{quest}</h4>
         <p style={{ whiteSpace: 'pre-line' }}>{outcome}</p>
         {actionTaken === "Talk to blacksmith" ? (
             <button onClick={() => handleAdvance()}>Advance</button>
@@ -54,4 +54,4 @@ function Home({ location, quest }) {
   )
 }
 
-export default Home
+export default Quest1
