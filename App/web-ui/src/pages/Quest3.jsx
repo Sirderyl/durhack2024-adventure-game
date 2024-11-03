@@ -39,7 +39,8 @@ function Quest3({ location, quest }) {
         <h4 style={{ whiteSpace: 'pre-line' }}>{quest}</h4>
         {outcome === "Invalid action" ? (
             <p style={{ whiteSpace: 'pre-line', color: 'red' }}>
-                {outcome}. Try something else, what could you use to distract the fox? Try looking around the area.
+                {outcome}. Try something else, will you let yourself be broken by the mirror&apos;s illusions 
+                or disregard what the mirror is trying to instill in you?
             </p>
         ) : (
             <p style={{ whiteSpace: 'pre-line', color: 'lightgreen' }}>{outcome}</p>

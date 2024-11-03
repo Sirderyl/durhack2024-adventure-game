@@ -4,8 +4,6 @@ from location import Location
 from quest import Quest
 from user import User
 
-def speak_blacksmith_result(user: User):
-    pass # TODO: Implement
 
 speak_blacksmith = Action(
     name="Talk to blacksmith",
