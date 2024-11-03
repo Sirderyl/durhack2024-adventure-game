@@ -13,7 +13,7 @@ function Quest2({ location, quest }) {
     async function handleSubmit(e) {
         e.preventDefault()
 
-        fetch(`http://localhost:5000/response?story=self_worth&quest=journey_begins&location=vale_of_shadows&input="` + userInput + `"`)
+        fetch(`http://localhost:5000/response?story=self_worth&quest=meeting_the_fox&location=vale_of_shadows&input="` + userInput + `"`)
         .then(response => response.json())
         .then(data => {
             setActionTaken(data.action)
@@ -37,7 +37,7 @@ function Quest2({ location, quest }) {
         <img src={Forge} alt='Forge' height={400} width={400}/>
         <h3 style={{ whiteSpace: 'pre-line' }}>{location}</h3>
         <h4 style={{ whiteSpace: 'pre-line' }}>{quest}</h4>
-        <p style={{ whiteSpace: 'pre-line' }}>{outcome}</p>
+        <p style={{ whiteSpace: 'pre-line', color: 'lightgreen' }}>{outcome}</p>
         {actionTaken === "Throw a piece of raw meat" ? (
             <button onClick={() => handleAdvance()}>Advance</button>
         ) : (
