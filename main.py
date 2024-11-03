@@ -48,7 +48,9 @@ def response():
 
     predicted_action = lam.predict_action(player_input, quest.actions)
     if predicted_action == "invalid action":
-        return Response('Invalid action', status=400)
+        return Response(json.dumps({
+            'outcome': "Invalid action"
+        }), mimetype='application/json')
 
     action_obj = quest.actions[predicted_action]
     if action_obj.response is None:

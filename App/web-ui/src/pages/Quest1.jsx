@@ -37,7 +37,13 @@ function Quest1({ location, quest }) {
         <img src={Forge} alt='Forge' height={400} width={400}/>
         <h3 style={{ whiteSpace: 'pre-line' }}>{location}</h3>
         <h4 style={{ whiteSpace: 'pre-line' }}>{quest}</h4>
-        <p style={{ whiteSpace: 'pre-line', color: 'lightgreen' }}>{outcome}</p>
+        {outcome === "Invalid action" ? (
+            <p style={{ whiteSpace: 'pre-line', color: 'red' }}>
+                {outcome}. Try something else, perhaps there is someone waiting to speak with you.
+            </p>
+        ) : (
+            <p style={{ whiteSpace: 'pre-line', color: 'lightgreen' }}>{outcome}</p>
+        )}
         {actionTaken === "Talk to blacksmith" ? (
             <button onClick={() => handleAdvance()}>Advance</button>
         ) : (

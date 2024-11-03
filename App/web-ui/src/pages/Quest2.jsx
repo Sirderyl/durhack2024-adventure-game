@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
-import Forge from '../assets/Forge.jpg'
+import Vale from '../assets/Vale.jpg'
 
 function Quest2({ location, quest }) {
  
@@ -34,10 +34,16 @@ function Quest2({ location, quest }) {
 
   return (
     <>
-        <img src={Forge} alt='Forge' height={400} width={400}/>
+        <img src={Vale} alt='Forge' height={400} width={400}/>
         <h3 style={{ whiteSpace: 'pre-line' }}>{location}</h3>
         <h4 style={{ whiteSpace: 'pre-line' }}>{quest}</h4>
-        <p style={{ whiteSpace: 'pre-line', color: 'lightgreen' }}>{outcome}</p>
+        {outcome === "Invalid action" ? (
+            <p style={{ whiteSpace: 'pre-line', color: 'red' }}>
+                {outcome}. Try something else, what could you use to distract the fox? Try looking around the area.
+            </p>
+        ) : (
+            <p style={{ whiteSpace: 'pre-line', color: 'lightgreen' }}>{outcome}</p>
+        )}
         {actionTaken === "Throw a piece of raw meat" ? (
             <button onClick={() => handleAdvance()}>Advance</button>
         ) : (
