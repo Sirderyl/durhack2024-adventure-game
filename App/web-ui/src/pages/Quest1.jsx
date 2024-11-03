@@ -26,6 +26,12 @@ function Home({ location, quest }) {
         navigate("/the-broken-crown/quest2")
     }
 
+    function handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            handleSubmit(e)
+        }
+    }
+
   return (
     <>
         <img src={Forge} alt='Forge' height={400} width={400}/>
@@ -36,7 +42,11 @@ function Home({ location, quest }) {
             <button onClick={() => handleAdvance()}>Advance</button>
         ) : (
             <>
-                <input type="text" placeholder="Enter your answer here" onChange={(e) => setUserInput(e.target.value)} />
+                <input type="text"
+                    placeholder="Enter your answer here"
+                    onChange={(e) => setUserInput(e.target.value)}
+                    onKeyDown={(e) => handleKeyPress(e)}
+                    />
                 <button style={{ marginLeft: '10px' }} onClick={(e) => handleSubmit(e)}>Submit</button>
             </>
         )}
