@@ -4,7 +4,7 @@ import '../App.css'
 import Bard from '../assets/Bard.jpg'
 import { LOCALHOST } from '../settings.json'
 
-function Quest4({ location, quest }) {
+function Quest4({ location, quest, actions }) {
  
     const [userInput, setUserInput] = useState("")
     const [actionTaken, setActionTaken] = useState("")
@@ -13,6 +13,15 @@ function Quest4({ location, quest }) {
 
     async function handleSubmit(e) {
         e.preventDefault()
+
+        if(userInput === "list actions") {
+            let actionList = ""
+            Object.keys(actions).forEach(action => {
+                actionList += action + "\n"
+            })
+            setOutcome(actionList)
+            return
+        }
 
         fetch(LOCALHOST + `/response?story=self_worth&quest=the_sad_bard&location=vale_of_shadows&input="` + userInput + `"`)
         .then(response => response.json())

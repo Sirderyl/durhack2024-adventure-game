@@ -4,7 +4,7 @@ import '../App.css'
 import Vale from '../assets/Vale.jpg'
 import { LOCALHOST } from '../settings.json'
 
-function Quest2({ location, quest }) {
+function Quest2({ location, quest, actions }) {
  
     const [userInput, setUserInput] = useState("")
     const [actionTaken, setActionTaken] = useState("")
@@ -13,6 +13,15 @@ function Quest2({ location, quest }) {
 
     async function handleSubmit(e) {
         e.preventDefault()
+
+        if(userInput === "list actions") {
+            let actionList = ""
+            Object.keys(actions).forEach(action => {
+                actionList += action + "\n"
+            })
+            setOutcome(actionList)
+            return
+        }
 
         fetch(LOCALHOST + `/response?story=self_worth&quest=meeting_the_fox&location=vale_of_shadows&input="` + userInput + `"`)
         .then(response => response.json())

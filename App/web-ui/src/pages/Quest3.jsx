@@ -4,7 +4,7 @@ import '../App.css'
 import Mirror from '../assets/Mirror.jpg'
 import { LOCALHOST } from '../settings.json'
 
-function Quest3({ location, quest }) {
+function Quest3({ location, quest, actions }) {
  
     const [userInput, setUserInput] = useState("")
     const [actionTaken, setActionTaken] = useState("")
@@ -13,6 +13,15 @@ function Quest3({ location, quest }) {
 
     async function handleSubmit(e) {
         e.preventDefault()
+
+        if(userInput === "list actions") {
+            let actionList = ""
+            Object.keys(actions).forEach(action => {
+                actionList += action + "\n"
+            })
+            setOutcome(actionList)
+            return
+        }
 
         fetch(LOCALHOST + `/response?story=self_worth&quest=facing_the_mirror&location=vale_of_shadows&input="` + userInput + `"`)
         .then(response => response.json())

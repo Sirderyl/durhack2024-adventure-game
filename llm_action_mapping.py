@@ -1,3 +1,4 @@
+import os
 import google.generativeai as genai
 from strip_markdown import strip_markdown
 
@@ -5,8 +6,9 @@ from action import Action
 from location import Location
 from quest import Quest
 
-# This shouldn't be hardcoded. Too bad.
-api_key = "AIzaSyBWFVhLGTuaVqhmsTajxaZNqNK58XNYDCI"
+
+api_key = os.getenv("GEMINI_API_KEY")
+
 
 # Example function to create a structured prompt
 def create_prompt(player_input: str, valid_actions: dict[str, Action]):

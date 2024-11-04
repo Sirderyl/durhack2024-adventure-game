@@ -4,7 +4,7 @@ import '../App.css'
 import Crown from '../assets/Crown.jpg'
 import { LOCALHOST } from '../settings.json'
 
-function Quest5_final({ location, quest }) {
+function Quest5_final({ location, quest, actions }) {
  
     const [userInput, setUserInput] = useState("")
     const [actionTaken, setActionTaken] = useState("")
@@ -13,6 +13,15 @@ function Quest5_final({ location, quest }) {
 
     async function handleSubmit(e) {
         e.preventDefault()
+
+        if(userInput === "list actions") {
+            let actionList = ""
+            Object.keys(actions).forEach(action => {
+                actionList += action + "\n"
+            })
+            setOutcome(actionList)
+            return
+        }
 
         fetch(LOCALHOST + `/response?story=self_worth&quest=finding_the_crown&location=vale_of_shadows&input="` + userInput + `"`)
         .then(response => response.json())
